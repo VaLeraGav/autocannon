@@ -1,0 +1,10 @@
+{
+  "name": "autocannon",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "dependencies": {
+    "autocannon": "^7.15.0"
+  }
+}
