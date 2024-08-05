@@ -1,14 +1,19 @@
 const fs = require('fs');
-const { join } = require('path');
 
-function setLogs(result) {
-    fs.writeFileSync(
-        join(process.cwd(), 'results', Date.now() + '.json'),
-        JSON.stringify(result, undefined, 2),
-        { encoding: 'utf8' }
-    );
+function setLogs(path, result) {
+    fs.mkdir(path, { recursive: true }, (err) => {
+        if (err) throw err;
+
+        const contents = JSON.stringify(result, undefined, 2)
+        const nameFile = path + '/' + Date.now() + '.json';
+
+        fs.writeFile(nameFile, contents, err => {
+            if (err) throw err;
+            console.log('Данные успешно записаны в файл: ', nameFile);
+        });
+    });
 }
 
 module.exports = {
     setLogs
-}
+};
